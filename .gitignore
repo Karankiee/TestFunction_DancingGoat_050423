@@ -4,3 +4,6 @@
 
 /.vs
 /DancingGoatCore_Publish
+/DancingGoatCore/Properties/PublishProfiles/FolderProfile.pubxml.user
+/DancingGoatCore/DancingGoatCore.csproj
+/DancingGoatCore/DancingGoatCore.csproj.user
