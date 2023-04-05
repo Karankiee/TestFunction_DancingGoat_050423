@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore_Publish</_PublishTargetUrl>
+    <History>True|2023-04-05T07:52:37.8504554Z;False|2023-04-05T14:52:07.7672809+07:00;True|2023-04-05T14:47:22.2340682+07:00;False|2023-04-05T14:47:09.3670292+07:00;True|2023-04-05T14:39:31.4502650+07:00;False|2023-04-05T14:39:14.7836679+07:00;True|2023-04-05T14:35:56.7935802+07:00;False|2023-04-05T14:35:48.5343240+07:00;True|2023-04-05T14:23:11.3210315+07:00;False|2023-04-05T14:22:51.2200615+07:00;False|2023-04-05T14:22:25.6753598+07:00;False|2023-04-05T14:21:46.4706283+07:00;False|2023-04-05T14:21:18.2406468+07:00;True|2023-04-05T13:52:05.9001629+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

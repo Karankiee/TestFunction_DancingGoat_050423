@@ -424,3 +424,5 @@ C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore
 C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore\obj\Release\netcoreapp3.1\DancingGoatCore.dll
 C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore\obj\Release\netcoreapp3.1\DancingGoatCore.pdb
 C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore\obj\Release\netcoreapp3.1\DancingGoatCore.genruntimeconfig.cache
+C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore\obj\Release\netcoreapp3.1\Razor\Views\DevZone\Index.cshtml.g.cs
+C:\Kentico_Leaning\Kentico13_Git_TestFunction_DancingGoat_050423\DancingGoatCore\obj\Release\netcoreapp3.1\Razor\Views\DevZone\Form.cshtml.g.cs
