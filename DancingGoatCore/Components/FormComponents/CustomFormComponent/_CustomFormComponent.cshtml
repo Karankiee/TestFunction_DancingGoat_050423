@@ -1,0 +1,33 @@
+﻿@using Kentico.Forms.Web.Mvc
+
+
+@{
+    IDictionary<string, object> htmlAttributes = ViewData.Kentico().GetEditorHtmlAttributes();
+}
+
+@model DancingGoat.FormComponents.CustomFormComponent
+
+@{
+    if (htmlAttributes.ContainsKey("class"))
+    {
+        htmlAttributes["class"] += " myclass";
+    }
+    else
+    {
+        htmlAttributes["class"] = "myclass";
+    }
+}
+
+@{
+    if (htmlAttributes.ContainsKey("class"))
+    {
+        htmlAttributes["class"] += " myclass";
+    }
+    else
+    {
+        htmlAttributes["class"] = "myclass";
+    }
+}
+
+@Html.TextBoxFor(m => m.Value, htmlAttributes)
+
