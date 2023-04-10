@@ -3,7 +3,7 @@ using CMS.SiteProvider;
 using DancingGoat.FormComponents.ReCaptchaV3;
 using Kentico.Forms.Web.Mvc;
 
-[assembly: RegisterFormComponent(ReCaptchaV3Component.IDENTIFIER, typeof(ReCaptchaV3Component), "ReCaptchaV3 Component", Description = "Custom ReCaptchaV3 component", IconClass = "icon-recaptcha", ViewName = "~/Components/FormComponents/ReCaptchaV3/_ReCaptchaV3_2.cshtml")]
+[assembly: RegisterFormComponent(ReCaptchaV3Component.IDENTIFIER, typeof(ReCaptchaV3Component), "ReCaptchaV3 Component", Description = "Custom ReCaptchaV3 component", IconClass = "icon-recaptcha", ViewName = "~/Components/FormComponents/ReCaptchaV3/_ReCaptchaV3.cshtml")]
 
 namespace DancingGoat.FormComponents.ReCaptchaV3
 {
