@@ -1,0 +1,39 @@
+﻿@using Kentico.Forms.Web.Mvc
+
+@model DancingGoat.FormComponents.ReCaptchaV3.ReCaptchaV3Component
+
+@{
+    IDictionary<string, object> htmlAttributes = ViewData.Kentico().GetEditorHtmlAttributes();
+}
+
+@{
+    htmlAttributes["class"] += " hidden captchaToken";
+    htmlAttributes["data-captchaToken"] = "";
+    htmlAttributes["value"] = "";
+
+}
+
+@Html.TextBoxFor(m => m.Value, htmlAttributes)
+
+<input type="button" class="Fake Button hidden" value="Fake Button" onclick="getToken();" />
+
+<script src="https://www.google.com/recaptcha/api.js?render=@Model.GoogleSiteKey" type="text/javascript"></script>
+
+<script>
+    var siteKey = '@Model.GoogleSiteKey';
+
+    function getToken() {
+        grecaptcha.ready(() => {
+            grecaptcha
+                .execute(siteKey, { action: 'submit' })
+                .then(token => {
+                    document.querySelector('.captchaToken').value = token;
+                    console.log("token ==> " + token)
+                    document.querySelector("[id*='form'] form input[type='submit']").click();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    }
+</script>
