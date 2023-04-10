@@ -1,4 +1,5 @@
-﻿using DancingGoat.FormComponents;
+﻿using CMS.EventLog;
+using DancingGoat.FormComponents;
 using Kentico.Forms.Web.Mvc;
 using System;
 
@@ -24,6 +25,8 @@ namespace DancingGoat.FormComponents
         // Validates the configured property values against the submitted value of the selected dependee field
         protected override bool Validate(int value)
         {
+            EventLogProvider.LogInformation("ValueOfDependeeLiesBetweenValidationRule", $"value ==> {value}", "0");
+
             if (Bound > DependeeFieldValue)
             {
                 return (DependeeFieldValue <= value) && (value <= Bound);
