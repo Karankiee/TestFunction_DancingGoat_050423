@@ -2,9 +2,145 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/_LayoutCustom.cshtml";
 }
 
-<h1>From For DEV!!</h1>
 
 
+
+@*<div class="d-none">
 <editable-area area-identifier="ContactUs" area-options-allowed-widgets="new[] { SystemComponentIdentifiers.FORM_WIDGET_IDENTIFIER }" />
+</div>*@
+
+<section class="block-eForm py-5">
+    <div class="container">
+        <h1 class="text-center">From For DEV!!</h1>
+        <p class="text-center">
+            เลือกเรื่องที่ต้องการสอบถาม แนะนำ หรือติชม และกรอกข้อมูลให้ครบ <br />
+            เราจะรีบติดต่อกลับโดยเร็ว หรือส่งอีเมลมาหาเราได้ที่ ContactUs@heygoody.com
+        </p>
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-10 mx-auto">
+                <form class="e-form rounded shadow p-4">
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option selected>เรื่องที่ต้องการติดต่อ</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-4 mb-3">
+                            <select class="form-select">
+                                <option selected>คำนำหน้า</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-8 mb-3">
+                            <input type="text" class="form-control" placeholder="ชื่อ" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="นามสกุล" />
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="อีเมล" />
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="เบอร์มือถือ" />
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control overflow-hidden" placeholder="อยากบอกเราว่า..." rows="2" id="textArea" style="padding: 12px 16px 24px;"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <p class="mb-0">รูปภาพประกอบ (ถ้ามี)</p>
+                        <p>แนบรูปภาพได้ไม่เกิน 5 รูป</p>
+                        <button type="button" class="btn btn-primary" id="btnFistUpFiles" onclick="triggerClick();">
+                            Fist Up
+                            Files
+                        </button>
+                        <div>
+                            <input class="form-control" type="file" id="upFiles" name="upFiles[]" multiple
+                                   onchange="upFilesImg(this,'listsImg');" accept=".png,.jpg,.gif" onclick="this.value=null;" hidden>
+                            <div id="listsImg"></div>
+                        </div>
+                        <button type="button" class="btn btn-info" id="btnLastUpFiles" style="display:none;"
+                                onclick="triggerClick();">
+                            Last Up Files
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Function: Text Area Auto Height
+    textarea = document.querySelector("#textArea");
+    textarea.addEventListener('input', autoResize, false);
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 2 + 'px';
+    }
+    // Function: BTN Up Load Files
+    function triggerClick() {
+        document.getElementById("upFiles").click();
+    }
+    // Function: Up Load Files
+    const fileupload_maxsize = 1000000; //1mb
+    const allowedExtensions = /(\.png|\.jpg|\.gif)$/i;
+
+    function upFilesImg(input, type) {
+        let nametype = "#" + type;
+        let ids = input.ids;
+        var total_file = input.files.length;
+        let path = input.value;
+
+        if (!allowedExtensions.exec(path)) {
+            alert('Invalid file type');
+            path.value = '';
+            return false;
+        }
+
+        for (var i = 0; i < total_file; i++) {
+            var fsize = (input.files[i].size);
+            var fname = (input.files[i].name);
+            var maxfile = document.getElementById("listsImg").childElementCount;
+            if (maxfile < 5) {
+                document.getElementById("listsImg").innerHTML += `
+                <div class="listsImg-items">
+                    ${fname} (${fsize/1000}KB)<br/>
+                    ${URL.createObjectURL(event.target.files[i])}<br/>
+                    <button onclick='removeimg(this)' type='button'>ลบ</button>
+                </div>
+                `
+                let numb = document.getElementById("listsImg").childElementCount;
+                //console.log(numb);
+                if (numb == 5) {
+                    document.getElementById("btnLastUpFiles").style.display = "none";
+                } else {
+                    document.getElementById("btnFistUpFiles").style.display = "none";
+                    document.getElementById("btnLastUpFiles").style.display = "block";
+                }
+            }
+        }
+    }
+
+    function removeimg(e) {
+        e.parentNode.remove();
+        let numb = document.getElementById("listsImg").childElementCount;
+        console.log(numb);
+        if (numb < 5 && numb != 0) {
+            document.getElementById("btnLastUpFiles").style.display = "block";
+        } else {
+            document.getElementById("btnFistUpFiles").style.display = "block";
+            document.getElementById("btnLastUpFiles").style.display = "none";
+        }
+    }
+
+</script>
+
