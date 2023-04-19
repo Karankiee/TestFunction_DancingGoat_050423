@@ -53,7 +53,8 @@
                         <input type="text" class="form-control" placeholder="เบอร์มือถือ" />
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control overflow-hidden" placeholder="อยากบอกเราว่า..." rows="2" id="textArea" style="padding: 12px 16px 24px;"></textarea>
+                        <textarea class="form-control overflow-hidden" placeholder="อยากบอกเราว่า..." rows="2"
+                                  id="textArea" style="padding: 12px 16px 24px;"></textarea>
                     </div>
                     <div class="mb-3">
                         <p class="mb-0">รูปภาพประกอบ (ถ้ามี)</p>
@@ -64,7 +65,11 @@
                         </button>
                         <div>
                             <input class="form-control" type="file" id="upFiles" name="upFiles[]" multiple
-                                   onchange="upFilesImg(this,'listsImg');" accept=".png,.jpg,.gif" onclick="this.value=null;" hidden>
+                                   onchange="upFilesImg(this,'listsImg');" accept=".png,.jpg,.gif"
+                                   onclick="this.value=null;" hidden>
+
+
+
                             <div id="listsImg"></div>
                         </div>
                         <button type="button" class="btn btn-info" id="btnLastUpFiles" style="display:none;"
@@ -86,60 +91,126 @@
         this.style.height = 'auto';
         this.style.height = this.scrollHeight + 2 + 'px';
     }
-    // Function: BTN Up Load Files
+
+    var arrayFile = [];
+
     function triggerClick() {
         document.getElementById("upFiles").click();
     }
-    // Function: Up Load Files
-    const fileupload_maxsize = 1000000; //1mb
-    const allowedExtensions = /(\.png|\.jpg|\.gif)$/i;
 
-    function upFilesImg(input, type) {
-        let nametype = "#" + type;
-        let ids = input.ids;
-        var total_file = input.files.length;
-        let path = input.value;
-
-        if (!allowedExtensions.exec(path)) {
-            alert('Invalid file type');
-            path.value = '';
-            return false;
-        }
-
+    function upFilesImg(input) {
+        let total_file = input.files.length;
         for (var i = 0; i < total_file; i++) {
-            var fsize = (input.files[i].size);
-            var fname = (input.files[i].name);
-            var maxfile = document.getElementById("listsImg").childElementCount;
-            if (maxfile < 5) {
-                document.getElementById("listsImg").innerHTML += `
-                <div class="listsImg-items">
-                    ${fname} (${fsize/1000}KB)<br/>
-                    ${URL.createObjectURL(event.target.files[i])}<br/>
-                    <button onclick='removeimg(this)' type='button'>ลบ</button>
-                </div>
-                `
-                let numb = document.getElementById("listsImg").childElementCount;
-                //console.log(numb);
-                if (numb == 5) {
-                    document.getElementById("btnLastUpFiles").style.display = "none";
-                } else {
-                    document.getElementById("btnFistUpFiles").style.display = "none";
-                    document.getElementById("btnLastUpFiles").style.display = "block";
-                }
+
+            let fileName = input.files[i].name;
+            let filenameSP = fileName.split('.')
+            fileName = filenameSP[0] + "_" + makeid(5) + "." + filenameSP[1]
+            let fileSize = input.files[i].size
+
+            let compressSize = 1;
+            let compressType = "image/jpeg";
+
+            if (fileSize >= 1 * 1000 * 1000) {
+                compressSize = 0.55
             }
+            ImageProcess(input.files[i], compressSize, compressType, fileName, fileSize);
         }
     }
 
-    function removeimg(e) {
-        e.parentNode.remove();
-        let numb = document.getElementById("listsImg").childElementCount;
-        console.log(numb);
-        if (numb < 5 && numb != 0) {
-            document.getElementById("btnLastUpFiles").style.display = "block";
+    function ImageProcess(img, compressSize, compressType, fileName, fileSize) {
+        return new Promise(resolve => {
+            let blobURL = URL.createObjectURL(img);
+            let image = new Image();
+            image.src = blobURL;
+
+            image.onload = () => {
+                URL.revokeObjectURL(this.src);
+                let canvas = document.createElement("canvas");
+                canvas.width = 600;
+                canvas.height = 350;
+                let ctx = canvas.getContext("2d");
+                ctx.drawImage(image, 0, 0, 600, 350);
+
+                canvas.toBlob(
+                    blob => {
+
+                        //console.log(`in ${(blob.size / 1024).toFixed(2)} KB`)
+                        var compressedFile = new File([blob], fileName, {
+                            type: 'image/jpeg',
+                            lastModified: Date.now()
+                        });
+                        //console.log(compressedFile)
+
+                    },
+                    compressType,
+                    compressSize);
+
+                let imageObject = {};
+                imageObject.Name = fileName;
+                imageObject.Size = fileSize;
+                imageObject.base64 = canvas.toDataURL('base64Img');
+
+                if (arrayFile.length < 5) {
+                    //console.log(arrayFile);
+
+                    arrayFile.push(imageObject);
+                }
+                document.getElementById("listsImg").innerHTML = "";
+                arrayFile.forEach(element => {
+                    showImage(element.base64, element.Name, element.Size)
+                });
+                showUploadButton();
+                resolve('resolved');
+            }
+
+        });
+    }
+
+    function showImage(src, name, size) {
+        document.getElementById("listsImg").innerHTML += `
+                <div id="item" class="listsImg-items">
+                    <img width='300' height='300' src='${src}' /><br/>
+                    <br/>
+                    <p>${name}<p>
+                    <br/>
+                    <p>${(size / 1024).toFixed(2)} KB</p>
+                    <button onclick="removeImage(this,'${name}')" type='button'>ลบ</button>
+                </div>
+            `
+    }
+
+    function removeImage(element, name) {
+        element.parentNode.remove();
+        let filtered = arrayFile.filter(function (el) { return el.Name != name; })
+        arrayFile = filtered;
+        showUploadButton();
+    }
+
+    function showUploadButton() {
+        if (arrayFile.length < 5 && arrayFile.length != 0) {
+            document.getElementById("btnFistUpFiles").style.display = "none";
+            document.getElementById("btnLastUpFiles").style.display = "block"
+
+        } else if (arrayFile.length == 5) {
+            document.getElementById("btnFistUpFiles").style.display = "none";
+            document.getElementById("btnLastUpFiles").style.display = "none";
         } else {
             document.getElementById("btnFistUpFiles").style.display = "block";
             document.getElementById("btnLastUpFiles").style.display = "none";
         }
+    }
+
+
+    function makeid(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+        }
+        return result;
     }
 
 </script>
