@@ -43,28 +43,29 @@ namespace DancingGoat.Controllers
         [HttpGet("/devzone/form")]
         public IActionResult Form()
         {
-            Dropdownlist dropdownlistModel = new Dropdownlist();
-            List<Subject_list> subject_Lists = new List<Subject_list>();
-            List<TitleName_list> titleName_Lists = new List<TitleName_list>();
+            //Dropdownlist dropdownlistModel = new Dropdownlist();
+            //List<Subject_list> subject_Lists = new List<Subject_list>();
+            //List<TitleName_list> titleName_Lists = new List<TitleName_list>();
 
-            var selectSubject = new DataQuery("customtable.E_formMasterQuery.selectSubject").Execute();
-            foreach (DataRow item in selectSubject.Tables[0].Rows)
-            {
-                subject_Lists.Add(new Subject_list { Category = item["Category"].ToString(), Text = item["Text"].ToString() });
-            }
+            //var selectSubject = new DataQuery("customtable.E_formMasterQuery.selectSubject").Execute();
+            //foreach (DataRow item in selectSubject.Tables[0].Rows)
+            //{
+            //    subject_Lists.Add(new Subject_list { Category = item["Category"].ToString(), Text = item["Text"].ToString() });
+            //}
 
-            dropdownlistModel.subjectList = subject_Lists;
+            //dropdownlistModel.subjectList = subject_Lists;
 
-            var selectTitleName = new DataQuery("customtable.E_formMasterQuery.selectTitleName").Execute();
-            foreach (DataRow item in selectTitleName.Tables[0].Rows)
-            {
-                titleName_Lists.Add(new TitleName_list { Category = item["Category"].ToString(), Text = item["Text"].ToString() });
-            }
+            //var selectTitleName = new DataQuery("customtable.E_formMasterQuery.selectTitleName").Execute();
+            //foreach (DataRow item in selectTitleName.Tables[0].Rows)
+            //{
+            //    titleName_Lists.Add(new TitleName_list { Category = item["Category"].ToString(), Text = item["Text"].ToString() });
+            //}
 
-            eventLog.LogError("devzone", "Form", JsonConvert.SerializeObject(dropdownlistModel));
+            //eventLog.LogError("devzone", "Form", JsonConvert.SerializeObject(dropdownlistModel));
 
 
-            return View(dropdownlistModel);
+            //return View(dropdownlistModel);
+            return View();
         }
 
         [HttpPost("/devzone/savadata")]
