@@ -1,20 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     Layout = "~/Views/Shared/_LayoutCustom.cshtml";
 }
 
-
-
-
-@*<div class="d-none">
-<editable-area area-identifier="ContactUs" area-options-allowed-widgets="new[] { SystemComponentIdentifiers.FORM_WIDGET_IDENTIFIER }" />
-</div>*@
+@model DancingGoat.Models.DevZone.DevZoneModel.eFormModel.Dropdownlist
 
 <section class="block-eForm py-5">
     <div class="container">
-        <h1 class="text-center">From For DEV!!</h1>
+        <h1 class="text-center">From For DEV!!!</h1>
         <p class="text-center">
             เลือกเรื่องที่ต้องการสอบถาม แนะนำ หรือติชม และกรอกข้อมูลให้ครบ <br />
             เราจะรีบติดต่อกลับโดยเร็ว หรือส่งอีเมลมาหาเราได้ที่ ContactUs@heygoody.com
@@ -23,34 +15,31 @@
             <div class="col-xl-4 col-lg-6 col-md-10 mx-auto">
                 <form class="e-form rounded shadow p-4">
                     <div class="mb-3">
-                        <select class="form-select">
-                            <option selected>เรื่องที่ต้องการติดต่อ</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+
+                        @Html.DropDownListFor(model => model.subjectList,new SelectList(Model.subjectList,"Text","Text") ,new{@class = "form-select"})
+
                     </div>
                     <div class="row g-0">
                         <div class="col-4 mb-3">
-                            <select class="form-select">
-                                <option selected>คำนำหน้า</option>
+                            <select id="titlename" class="form-select">
+                                <option value="0" selected>คำนำหน้า</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
                         </div>
                         <div class="col-8 mb-3">
-                            <input type="text" class="form-control" placeholder="ชื่อ" />
+                            <input id="name" type="text" class="form-control" placeholder="ชื่อ" />
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="นามสกุล" />
+                        <input id="surname" type="text" class="form-control" placeholder="นามสกุล" />
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="อีเมล" />
+                        <input id="email" type="email" class="form-control" placeholder="อีเมล" />
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="เบอร์มือถือ" />
+                        <input id="phone" type="text" class="form-control" placeholder="เบอร์มือถือ" />
                     </div>
                     <div class="mb-3">
                         <textarea class="form-control overflow-hidden" placeholder="อยากบอกเราว่า..." rows="2"
@@ -67,9 +56,6 @@
                             <input class="form-control" type="file" id="upFiles" name="upFiles[]" multiple
                                    onchange="upFilesImg(this,'listsImg');" accept=".png,.jpg,.gif"
                                    onclick="this.value=null;" hidden>
-
-
-
                             <div id="listsImg"></div>
                         </div>
                         <button type="button" class="btn btn-info" id="btnLastUpFiles" style="display:none;"
@@ -77,6 +63,7 @@
                             Last Up Files
                         </button>
                     </div>
+                    <input type="button" value="submit" onclick="saveForm()" class="btn btn-primary" />
                 </form>
             </div>
         </div>
@@ -84,14 +71,6 @@
 </section>
 
 <script>
-    // Function: Text Area Auto Height
-    textarea = document.querySelector("#textArea");
-    textarea.addEventListener('input', autoResize, false);
-    function autoResize() {
-        this.style.height = 'auto';
-        this.style.height = this.scrollHeight + 2 + 'px';
-    }
-
     var arrayFile = [];
 
     function triggerClick() {
@@ -99,12 +78,18 @@
     }
 
     function upFilesImg(input) {
-        let total_file = input.files.length;
-        for (var i = 0; i < total_file; i++) {
+
+        for (var i = 0; i < input.files.length; i++) {
+
+            if (i == 5) {
+
+                console.log("5")
+                break;
+            }
 
             let fileName = input.files[i].name;
             let filenameSP = fileName.split('.')
-            fileName = filenameSP[0] + "_" + makeid(5) + "." + filenameSP[1]
+            fileName = filenameSP[0] + "_" + makeid(5)
             let fileSize = input.files[i].size
 
             let compressSize = 1;
@@ -113,11 +98,12 @@
             if (fileSize >= 1 * 1000 * 1000) {
                 compressSize = 0.55
             }
-            ImageProcess(input.files[i], compressSize, compressType, fileName, fileSize);
+            ImageProcess(input.files[i], compressSize, compressType, fileName);
         }
+
     }
 
-    function ImageProcess(img, compressSize, compressType, fileName, fileSize) {
+    function ImageProcess(img, compressSize, compressType, fileName) {
         return new Promise(resolve => {
             let blobURL = URL.createObjectURL(img);
             let image = new Image();
@@ -133,31 +119,24 @@
 
                 canvas.toBlob(
                     blob => {
-
-                        //console.log(`in ${(blob.size / 1024).toFixed(2)} KB`)
                         var compressedFile = new File([blob], fileName, {
                             type: 'image/jpeg',
                             lastModified: Date.now()
                         });
-                        //console.log(compressedFile)
-
                     },
                     compressType,
                     compressSize);
 
                 let imageObject = {};
                 imageObject.Name = fileName;
-                imageObject.Size = fileSize;
-                imageObject.base64 = canvas.toDataURL('base64Img');
+                imageObject.base64 = canvas.toDataURL("image/jpeg");
 
                 if (arrayFile.length < 5) {
-                    //console.log(arrayFile);
-
                     arrayFile.push(imageObject);
                 }
                 document.getElementById("listsImg").innerHTML = "";
                 arrayFile.forEach(element => {
-                    showImage(element.base64, element.Name, element.Size)
+                    showImage(element.base64, element.Name)
                 });
                 showUploadButton();
                 resolve('resolved');
@@ -166,17 +145,16 @@
         });
     }
 
-    function showImage(src, name, size) {
+    function showImage(src, name) {
         document.getElementById("listsImg").innerHTML += `
-                <div id="item" class="listsImg-items">
-                    <img width='300' height='300' src='${src}' /><br/>
-                    <br/>
-                    <p>${name}<p>
-                    <br/>
-                    <p>${(size / 1024).toFixed(2)} KB</p>
-                    <button onclick="removeImage(this,'${name}')" type='button'>ลบ</button>
-                </div>
-            `
+                                    <div id="item" class="listsImg-items">
+                                        <img width='300' height='300' src='${src}' />
+                                        <br/>
+                                        ${name}
+                                        <br/>
+                                        <button onclick="removeImage(this,'${name}')" type='button'>ลบ</button>
+                                    </div>
+                                    `
     }
 
     function removeImage(element, name) {
@@ -200,7 +178,6 @@
         }
     }
 
-
     function makeid(length) {
         let result = '';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -211,6 +188,37 @@
             counter += 1;
         }
         return result;
+    }
+
+</script>
+
+<script>
+
+    function saveForm() {
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            url: "/devzone/savadata",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', csrfToken)
+            },
+            data: JSON.stringify({
+                'Subject': $("#subject").val(),
+                'TitleName': $("#titlename").val(),
+                'Name': $("#name").val(),
+                'SurName': $("#surname").val(),
+                'Email': $("#email").val(),
+                'Phone': $("#phone").val(),
+                'Detail': $("#textArea").val(),
+                'Image': arrayFile
+            }),
+            success: function (data) {
+                console.log(data)
+            }, error: function (error) {
+                console.log(error)
+            }
+        });
     }
 
 </script>

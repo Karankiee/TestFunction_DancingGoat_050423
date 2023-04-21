@@ -119,6 +119,8 @@ namespace DancingGoat
                 options.JQueryUnobtrusiveAjaxCustomBundleWebRootPath = "Scripts/jquery.unobtrusive-ajax.min.js";
             });
 
+            services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
+
             ConfigureMembershipServices(services);
             ConfigurePageBuilderFilters();
         }
