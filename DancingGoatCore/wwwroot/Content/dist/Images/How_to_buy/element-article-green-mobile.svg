@@ -1,0 +1,15 @@
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="50%" y1="42.372%" x2="7.887%" y2="53.878%" id="0j8pafxf4b">
+            <stop stop-color="#FDF3E3" offset="0%"/>
+            <stop stop-color="#B6E4D4" offset="100%"/>
+        </linearGradient>
+        <path id="gpgjruchpa" d="M0 0h180v180H0z"/>
+    </defs>
+    <g transform="matrix(1 0 0 -1 0 180)" fill="none" fill-rule="evenodd">
+        <mask id="d0of42c46c" fill="#fff">
+            <use xlink:href="#gpgjruchpa"/>
+        </mask>
+        <path d="M69.167-19.583c0 72.487 58.762 131.25 131.25 131.25 72.487 0 131.25-58.763 131.25-131.25V-20H400c0 110.457-89.543 200-200 200S0 90.457 0-20h69.167z" fill="url(#0j8pafxf4b)" mask="url(#d0of42c46c)"/>
+    </g>
+</svg>

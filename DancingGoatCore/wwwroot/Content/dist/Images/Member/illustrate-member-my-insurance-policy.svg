@@ -1,0 +1,17 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(3 2)">
+            <rect fill="#096B65" width="15" height="17" rx="2"/>
+            <g transform="translate(3 3)" fill="#FFF">
+                <rect width="7" height="1.5" rx=".75"/>
+                <rect y="3" width="7" height="1.5" rx=".75"/>
+                <rect y="6" width="4" height="1.5" rx=".75"/>
+            </g>
+        </g>
+        <path d="M22.988 13.256v-.01a12.78 12.78 0 0 1-.01-.372 1.26 1.26 0 0 0-1.172-1.246c-1.35-.077-2.395-.527-3.288-1.416l-.007-.007a.74.74 0 0 0-1.022 0l-.007.007c-.893.889-1.937 1.339-3.287 1.416a1.26 1.26 0 0 0-1.172 1.246c-.002.135-.006.256-.01.373l-.001.021c-.027 1.407-.06 3.158.514 4.747a6.06 6.06 0 0 0 1.419 2.259c.713.71 1.647 1.275 2.776 1.678a.844.844 0 0 0 .559 0c1.127-.404 2.06-.969 2.773-1.68a6.068 6.068 0 0 0 1.419-2.258c.575-1.594.543-3.349.516-4.758z" fill="#29A8A5"/>
+        <g transform="translate(15.1 13.2)" fill="#FFF">
+            <rect transform="rotate(45 1.591 3.298)" x=".091" y="2.548" width="3" height="1.5" rx=".75"/>
+            <rect transform="rotate(-45 3.598 2.298)" x="1.098" y="1.548" width="5" height="1.5" rx=".75"/>
+        </g>
+    </g>
+</svg>

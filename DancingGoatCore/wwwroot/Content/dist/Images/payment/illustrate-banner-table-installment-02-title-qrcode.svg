@@ -1,0 +1,17 @@
+<svg width="190" height="34" viewBox="0 0 190 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="2ery6r3pdb">
+            <stop stop-color="#F46A60" offset="0%"/>
+            <stop stop-color="#EE761D" offset="100%"/>
+        </linearGradient>
+        <path d="M10 0h138.162a24 24 0 0 1 21.464 13.263L180 34H0V10C0 4.477 4.477 0 10 0z" id="g7t0k6luda"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <use fill="url(#2ery6r3pdb)" xlink:href="#g7t0k6luda"/>
+        <text font-family="NotoSansThai-Bold, Noto Sans Thai" font-size="16" font-weight="bold" fill="#FFF">
+                        <tspan x="11" y="22">คิวอาร์โค้ด</tspan>
+                        <tspan x="82.433" y="22" font-size="13"> </tspan>
+                        <tspan x="85.122" y="22" font-family="NotoSansThai-Regular, Noto Sans Thai" font-size="14" font-weight="normal">กับเงินติดล้อ </tspan>
+                    </text>
+    </g>
+</svg>

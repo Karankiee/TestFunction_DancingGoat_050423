@@ -6,25 +6,173 @@
 
 <section class="block-eForm py-5">
     <div class="container">
-        <h1 class="text-center">From For DEV!!!</h1>
-        <p class="text-center">
-            เลือกเรื่องที่ต้องการสอบถาม แนะนำ หรือติชม และกรอกข้อมูลให้ครบ <br />
-            เราจะรีบติดต่อกลับโดยเร็ว หรือส่งอีเมลมาหาเราได้ที่ ContactUs@heygoody.com
-        </p>
+        <h1 class="text-center">ส่งข้อความหา heygoody</h1>
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <p class="text-center">
+                    เลือกเรื่องที่ต้องการสอบถาม แนะนำ หรือติชม และกรอกข้อมูลให้ครบ
+                    <span class="d-inline-block">
+                        เราจะรีบติดต่อกลับโดยเร็ว หรือส่งอีเมลมาหาเราได้ที่
+                        ContactUs@heygoody.com
+                    </span>
+                </p>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xl-4 col-lg-6 col-md-10 mx-auto">
-                <form class="e-form rounded shadow p-4">
-                    <div class="mb-3">
+                <div class="form-heygoody">
+                    <div class="fn-form-group">
+                        <div class="fn-form-content">
+                            <div class="fn-form-select">
+                                @*@Html.DropDownListFor(model => model.subjectList,new SelectList(Model.subjectList,"Text","Text") ,new{@class = "form-select"})*@
+                                <select class="form-select empty">
+                                    <option value="">เรื่องที่ต้องการติดต่อ</option>
+                                    <option value="1">เอกสารกรมธรรม์</option>
+                                    <option value="2">การเคลม</option>
+                                    <option value="3">แจ้งเปลี่ยนแปลงข้อมูล</option>
+                                    <option value="4">บริการหลังการขาย</option>
+                                    <option value="5">ผลิตภัณฑ์/โปรโมชัน</option>
+                                    <option value="6">แนะนำ ติชม</option>
+                                    <option value="7">อื่นๆ</option>
+                                </select>
+                                <div class="fn-valid-feedback">เลือกเรื่องที่ต้องการติดต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-4">
+                            <div class="fn-form-group">
+                                <div class="fn-form-content">
+                                    <div class="fn-form-select">
+                                        @*@Html.DropDownListFor(model => model.titleList,new SelectList(Model.titleList,"Text","Text") ,new{@class = "form-select"})*@
+                                        <select class="form-select empty rounded-end-0">
+                                            <option value="">คำนำหน้า</option>
+                                            <option value="1">นาย</option>
+                                            <option value="2">นาง</option>
+                                            <option value="3">นางสาว</option>
+                                        </select>
+                                        <div class="fn-valid-feedback">เลือกคำนำหน้า</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="fn-form-group fn-form-text">
+                                <div class="fn-form-content">
+                                    <input type="text" id="name" class="form-control rounded-start-0"
+                                           placeholder="ชื่อ" autocomplete="off">
+                                    <span data-clear-input="">
+                                        <img src="./dist/images/icon-24-grey-close-circle.svg"
+                                             class="icon24greyclose-circle">
+                                    </span>
+                                    <div class="fn-valid-feedback">กรอกชื่อ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fn-form-group fn-form-text">
+                        <div class="fn-form-content">
+                            <input type="text" id="surname" class="form-control" placeholder="นามสกุล"
+                                autocomplete="off">
+                            <span data-clear-input="">
+                                <img src="./dist/images/icon-24-grey-close-circle.svg"
+                                    class="icon24greyclose-circle">
+                            </span>
+                            <div class="fn-valid-feedback">กรอกนามสกุล</div>
+                        </div>
+                    </div>
+                    <div class="fn-form-group fn-form-text">
+                        <div class="fn-form-content">
+                            <input type="text" id="email" class="form-control email" placeholder="อีเมล" />
+                            <span data-clear-input>
+                                <img src="./dist/images/icon-24-grey-close-circle.svg"
+                                    class="icon24greyclose-circle" />
+                            </span>
+                            <div class="fn-valid-email" id="lblerrorEmail">กรอกอีเมล<span>ให้ถูกต้อง</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fn-form-group fn-form-text">
+                        <div class="fn-form-content">
+                            <input type="text" id="phone" class="form-control" placeholder="เบอร์มือถือ"
+                                autocomplete="off">
+                            <span data-clear-input="">
+                                <img src="./dist/images/icon-24-grey-close-circle.svg"
+                                    class="icon24greyclose-circle">
+                            </span>
+                            <div class="fn-valid-feedback">กรอกเบอร์มือถือ</div>
+                        </div>
+                    </div>
+                    <div class="fn-form-group fn-form-textarea mb-4">
+                        <div class="fn-form-content">
+                            <div class="position-relative w-100">
+                                <textarea id="textArea" name="txt-area-normal" placeholder="อยากบอกเราว่า..."
+                                    class="form-control" row="50" maxlength="1500"></textarea>
+                                <div id="the-count" class="fn-text-count">
+                                    <span class="text-current">0</span><span class="maximum">/1,500</span>
+                                </div>
+                            </div>
+                            <div class="fn-valid-feedback">กรอกชื่อ-นามสกุล</div>
+                        </div>
+                    </div>
+                    <div class="fn-form-group">
+                        <div class="fn-form-content">
+                            <p class="noto-xs-bold w-100 mb4">รูปภาพประกอบ <span
+                                    class="noto-xs-reg">(ถ้ามี)</span></p>
+                            <p class="noto-xxxs-reg w-100 mb16">แนบรูปภาพได้ไม่เกิน 5 รูป</p>
+                            <button type="button"
+                                class="fn-button fn-btn-M bg-transparent text-white border w-100"
+                                id="btnFistUpFiles" onclick="triggerClick();">
+                                แนบรูปภาพ
+                            </button>
+                            <input class="form-control" type="file" id="upFiles" name="upFiles[]" multiple
+                                onchange="upFilesImg(this,'listsImg');" accept=".png,.jpg,.gif"
+                                onclick="this.value=null;" hidden>
+                            <div id="listsImg" class="wrap-listImg w-100"></div>
+                            <button type="button"
+                                class="fn-button fn-btn-M bg-transparent text-white border w-100"
+                                id="btnLastUpFiles" style="display:none;" onclick="triggerClick();">
+                                เพิ่มรูปภาพ
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit"
+                            class="fn-button fn-btn-M fn-btn-primary w-100 mt40" onclick="saveForm()">
+                        ส่งข้อมูล
+                    </button>
+                </div>
+            </div>
+        </div>
 
-@*                        @Html.DropDownListFor(model => model.subjectList,new SelectList(Model.subjectList,"Text","Text") ,new{@class = "form-select"})
-*@
-                        <select id="subject" class="form-select">
-                                <option value="0" selected>คำนำหน้า</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
 
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-10 mx-auto">
+                <form class="form-heygoody">
+                    <div class="fn-form-group">
+                        <div class="fn-form-content">
+                            <div class="fn-form-select">
+                                @*@Html.DropDownListFor(model => model.subjectList,new SelectList(Model.subjectList,"Text","Text") ,new{@class = "form-select"})*@
+                                <select class="form-select">
+                                    <option value="">เรื่องที่ต้องการติดต่อ</option>
+                                    <option value="1">เอกสารกรมธรรม์</option>
+                                    <option value="2">การเคลม</option>
+                                    <option value="3">แจ้งเปลี่ยนแปลงข้อมูล</option>
+                                    <option value="4">บริการหลังการขาย</option>
+                                    <option value="5">ผลิตภัณฑ์/โปรโมชัน</option>
+                                    <option value="6">แนะนำ ติชม</option>
+                                    <option value="7">อื่นๆ</option>
+                                </select>
+                                <div class="fn-valid-feedback">เลือกเรื่องที่ต้องการติดต่อ</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row g-0">
                         <div class="col-4 mb-3">
@@ -79,6 +227,24 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+        <div class="modal animate__animated fn-modal-style" id="modalMaxLengthImg" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered fn-modal-2button">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <img src="./dist/images/ntlInstallment/illustrate-heygoody-face-guilty.svg" alt="guilty">
+                        <p class="noto-s-bold mb24 mt24">แนบรูปภาพได้ไม่เกิน 5 รูป</p>
+                        <div class="d-flex">
+                            <button type="button" class="fn-button fn-btn-M fn-btn-secondary w-100 mr8"
+                                data-bs-dismiss="modal">ปิด</button>
+                            <button type="button"
+                                class="fn-button fn-btn-M fn-btn-primary w-100 ml8">ลองอีกครั้ง</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <script>
     var arrayFile = [];
@@ -157,14 +323,22 @@
 
     function showImage(src, name) {
         document.getElementById("listsImg").innerHTML += `
-                                    <div id="item" class="listsImg-items">
-                                        <img width='300' height='300' src='${src}' />
-                                        <br/>
-                                        ${name}
-                                        <br/>
-                                        <button onclick="removeImage(this,'${name}')" type='button'>ลบ</button>
-                                    </div>
-                                    `
+            <div id="item" class=" listsImg-items position-relative overflow-hidden">
+                <div class="d-flex align-items-center">
+                    <div class="d-flex justify-content-center align-items-center shrinkImg">
+                        <img src='${src}' class="w-auto"/>
+                    </div>
+                    <div class="pl16 pr40">
+                        <p class="itemListImgName mb-0">${name}</p>
+                        <p class="mb-0">1MB</p>
+                    </div>
+
+                </div>
+                <button onclick="removeImage(this,'${name}')" type='button' class="btn position-absolute top-0 end-0 p-0 border-0">
+                    <img src="./dist/Images/icon-32-white-close-circle-bar-dark.svg" width="32" height="32">
+                </button>
+            </div>
+        `
     }
 
     function removeImage(element, name) {
