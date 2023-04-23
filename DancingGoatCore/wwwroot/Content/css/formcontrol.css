@@ -1,0 +1,40 @@
+.form-heygoody ::placeholder {
+    color: var(--tone-7-black-4);
+}
+.form-heygoody .fn-form-content .fn-form-select {
+    background: transparent;
+}
+.form-heygoody .fn-form-content .form-select,
+.form-heygoody .fn-form-content .form-control{
+    border: none;
+    color: var(--bg-2-beige-100);    
+    background-color: #2e2e2e;
+}
+.form-heygoody .fn-form-content .fn-form-select .form-select.empty{
+    color: var(--tone-7-black-4);
+}
+.form-heygoody .fn-form-content .fn-form-select::after{
+    background-image: url(../Images/icon-24-white-down-small.svg);
+    z-index: 999;
+}
+.form-heygoody .form-select:focus,
+.form-heygoody .form-control:focus {
+    box-shadow: none;
+}
+.form-heygoody .fn-form-content .form-email > label {
+    display: none;
+}
+.form-heygoody .dropdownemail{
+    color: var(--bg-2-beige-100);
+    background-color: #2e2e2e;
+    border: none;
+}
+.form-heygoody .dropdownemail>li:hover, 
+.form-heygoody .dropdownemail>li[aria-selected="true"]{
+    background-color: #2e2e2e;
+    color: var(--bg-2-beige-100);
+}
+.form-heygoody .errorempty .form-select:focus,
+.form-heygoody .errorempty .form-control:focus {
+    box-shadow: inset 0 0 0 2px var(--line-3-error);
+}

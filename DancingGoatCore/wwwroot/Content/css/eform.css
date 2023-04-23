@@ -1,0 +1,89 @@
+/* Master page */
+*::selection {
+    color: #1d1d1d;
+    background: #b5e7d0;
+}
+
+*::-moz-selection {
+    color: #1d1d1d;
+    background: #b5e7d0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    color: var(--bg-2-beige-100);
+    background-color: var(--tone-7-black-1);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 68px;
+    flex: 0 0 auto;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+
+/* E Form */
+.form-heygoody textarea.form-control {
+    min-height: 229px;
+}
+
+
+.wrap-listImg {
+    font-size: 14px;
+    color: var(--bg-2-beige-100);
+}
+
+.wrap-listImg .listsImg-items {
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    margin-bottom: 8px;
+}
+
+.wrap-listImg .listsImg-items:last-child {
+    margin-bottom: 16px;
+}
+
+.wrap-listImg .listsImg-items .shrinkImg {
+    background-color: var(--tone-7-black-3);
+    width: 56px;
+    height: 56px;
+}
+
+.wrap-listImg .listsImg-items .shrinkImg img {
+    cursor: pointer;
+    max-height: 56px;
+    max-width: 56px;
+    width: auto;
+}
+
+.wrap-listImg .listsImg-items .itemListImgName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    height: 21px;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+#modalMaxLengthImg .modal-body {
+    color: #1d1d1d;
+}
+@media (min-width: 992px){
+.modal-dialog.fn-modal-2button > .modal-content {
+    width: 384px;
+}
+}
