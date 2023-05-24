@@ -4,3 +4,6 @@
 
 /DancingGoatCore_Publish
 
+/.vs
+/CMS/obj/Debug
+/CMS/CMSApp.csproj.user
